@@ -34,7 +34,7 @@ jobs:
       - name: Zip files
         run: |
           rm -f lambda_package.zip
-          zip lambda_package.zip lamda_handler.py
+          zip lambda_package.zip lambda_handler.py
 
       - name: AWS configuration
         uses: aws-actions/configure-aws-credentials@v1
@@ -53,5 +53,5 @@ jobs:
             --s3-bucket ${{ env.S3_BUCKET }} --s3-key ${{ env.S3_KEY }} || \
           aws lambda create-function --function-name ${{ env.LAMBDA_FUNCTION_NAME }} \    
             --runtime python3.9 --role arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ env.IAM_ROLE_NAME }} \
-            --handler lamda_handler.lambda_handler \
+            --handler lambda_handler.lambda_handler \
             --code S3Bucket=${{ env.S3_BUCKET }},S3Key=${{ env.S3_KEY }}
