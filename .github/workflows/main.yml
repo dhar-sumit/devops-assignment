@@ -55,3 +55,4 @@ jobs:
             --runtime python3.9 --role arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ env.IAM_ROLE_NAME }} \
             --handler lambda_handler.lambda_handler \
             --code S3Bucket=${{ env.S3_BUCKET }},S3Key=${{ env.S3_KEY }}
+            --timeout 20 --memory-size 128
