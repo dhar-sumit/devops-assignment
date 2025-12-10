@@ -14,7 +14,7 @@ jobs:
       S3_BUCKET: "dev-ops-bkt"
       S3_KEY: "lambda_package.zip"
       LAMBDA_FUNCTION_NAME: "LambdaFunctionOverHttps"
-      IAM_ROLE_NAME: "lambda-execution-role"
+      IAM_ROLE_NAME: "arn:aws:iam::597727830496:role/lambda-apigateway-role"
 
 
     steps:
