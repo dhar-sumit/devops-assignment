@@ -24,7 +24,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: '3.14'
       
       - name: Install dependencies
         run: |
@@ -51,8 +51,11 @@ jobs:
           aws lambda get-function --function-name ${{ env.LAMBDA_FUNCTION_NAME }} && \
           aws lambda update-function-code --function-name ${{ env.LAMBDA_FUNCTION_NAME }} \
             --s3-bucket ${{ env.S3_BUCKET }} --s3-key ${{ env.S3_KEY }} || \
-          aws lambda create-function --function-name ${{ env.LAMBDA_FUNCTION_NAME }} \    
-            --runtime python3.9 --role arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ env.IAM_ROLE_NAME }} \
+          aws lambda create-function --function-name ${{ env.LAMBDA_FUNCTION_NAME }} \
+            --runtime python3.14 \
+            --role ${{ env.IAM_ROLE_NAME }} \
             --handler lambda_handler.lambda_handler \
-            --code S3Bucket=${{ env.S3_BUCKET }},S3Key=${{ env.S3_KEY }}
-            --timeout 20 --memory-size 128
+            --code S3Bucket=${{ env.S3_BUCKET }},S3Key=${{ env.S3_KEY }} \
+            --timeout 20 \
+            --memory-size 128
+
