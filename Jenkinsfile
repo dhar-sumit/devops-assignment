@@ -17,8 +17,6 @@ pipeline {
         stage('Zip Lambda Code') {
             steps {
                 sh'''
-		    sudo apt-get update
-                    sudo apt-get install -y zip
                     rm -f lambda_package.zip
                     zip lambda_package.zip lambda_handler.py
                 '''
